@@ -1,0 +1,21 @@
+{{- range .Values.bouncers }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "crowdsec-bouncer-traefik.middlewareName" .name }}
+  namespace: {{ include "crowdsec-bouncer-traefik.namespace" $ }}
+  labels:
+    app.kubernetes.io/name: {{ include "crowdsec-bouncer-traefik.name" $ }}
+    helm.sh/chart: {{ include "crowdsec-bouncer-traefik.chart" $ }}
+    app.kubernetes.io/instance: {{ $.Release.Name }}
+    app.kubernetes.io/managed-by: {{ $.Release.Service }}
+    app.kubernetes.io/component: bouncer
+    app.kubernetes.io/part-of: crowdsec
+    bouncer-name: {{ .name | quote }}
+spec:
+  plugin:
+    {{ $.Values.pluginName }}:
+      {{- $bouncer := omit . "name" }}
+      {{- toYaml $bouncer | nindent 6 }}
+{{- end }}

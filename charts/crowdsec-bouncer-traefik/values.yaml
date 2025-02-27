@@ -1,0 +1,72 @@
+# Default values for crowdsec-bouncer
+# This is a YAML-formatted file.
+
+# Plugin name from Traefik config
+pluginName: crowdsec-bouncer-traefik-plugin
+
+# Namespace name
+namespace: traefik
+
+# Bouncers array
+bouncers:
+  - name: default
+    # Main settings
+    enabled: true
+    logLevel: "INFO"  # INFO, DEBUG, ERROR
+    crowdsecMode: "live"  # none, live, stream, alone, appsec
+
+    # AppSec settings
+    crowdsecAppsecEnabled: false
+    crowdsecAppsecHost: "crowdsec:7422"
+    crowdsecAppsecPath: "/"
+    crowdsecAppsecFailureBlock: true
+    crowdsecAppsecUnreachableBlock: true
+    crowdsecAppsecBodyLimit: 10485760  # 10MB
+
+    # LAPI settings
+    crowdsecLapiScheme: "http"  # http, https
+    crowdsecLapiHost: "crowdsec-service.crowdsec.svc.cluster.local:8080"
+    crowdsecLapiPath: "/"
+    crowdsecLapiKey: ""  # Ключ должен быть указан пользователем
+    crowdsecLapiTlsInsecureVerify: false
+    crowdsecLapiTlsCertificateAuthority: ""
+    crowdsecLapiTlsCertificateBouncer: ""
+    crowdsecLapiTlsCertificateBouncerKey: ""
+
+    # Trusted IPs settings
+    clientTrustedIPs: []
+
+    # Headers settings
+    remediationHeadersCustomName: ""
+    forwardedHeadersCustomName: "X-Forwarded-For"
+    forwardedHeadersTrustedIPs: []
+
+    # Redis cache settings
+    redisCacheEnabled: false
+    redisCacheHost: "redis:6379"
+    redisCachePassword: ""
+    redisCacheDatabase: ""
+    redisUnreachableBlock: true
+
+    # HTTP request settings
+    httpTimeoutSeconds: 10
+
+    # Update settings
+    updateIntervalSeconds: 60
+    updateMaxFailure: 0
+    defaultDecisionSeconds: 60
+
+    # CAPI settings (for alone mode)
+    crowdsecCapiMachineId: ""
+    crowdsecCapiPassword: ""
+    crowdsecCapiScenarios: []
+
+    # Captcha settings
+    captchaProvider: ""  # hcaptcha, recaptcha, turnstile
+    captchaSiteKey: ""
+    captchaSecretKey: ""
+    captchaGracePeriodSeconds: 1800
+    captchaHTMLFilePath: "/captcha.html"
+
+    # Ban HTML file path
+    banHTMLFilePath: ""
