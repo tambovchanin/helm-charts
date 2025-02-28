@@ -24,72 +24,105 @@ helm install crowdsec-bouncer-traefik tambovchanin/crowdsec-bouncer-traefik
 
 # Installing with custom parameters
 helm install crowdsec-bouncer-traefik tambovchanin/crowdsec-bouncer-traefik \
-  --set bouncers[0].CrowdsecLapiKey=your-lapi-key \
-  --set bouncers[0].CrowdsecLapiHost=your-crowdsec-service:8080
+  --set bouncers.crowdsec-bouncer.CrowdsecLapiKey=your-lapi-key \
+  --set bouncers.crowdsec-bouncer.CrowdsecLapiHost=your-crowdsec-service:8080
 ```
 
 ## Configuration
 
 The following table lists the configurable parameters of the chart and their default values.
 
+
+#### Global configuration parameters
 | Parameter                                                | Description                                                                                 | Default Value                               |
 |---------------------------------------------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------|
 | `pluginName`                                            | Name of the Traefik plugin                                                                 | `crowdsec-bouncer-traefik-plugin`                   |
 | `namespace`                                             | Name of the namespace                                                                      | `traefik`                                           |
-| `bouncers[].name`                                       | Name of the bouncer                                                                        | `default`                                           |
-| `bouncers[].enabled`                             | Whether the plugin is enabled                                                              | `false`                                             |
-| `bouncers[].logLevel`                            | Logging level                                                                              | `INFO`                                              |
-| `bouncers[].crowdsecMode`                        | CrowdSec operation mode                                                                    | `live`                                              |
-| `bouncers[].crowdsecAppsecEnabled`               | Enable Crowdsec Appsec Server (WAF)                                                        | `false`                                             |
-| `bouncers[].crowdsecAppsecHost`                  | Crowdsec Appsec Server host and port                                                       | `"crowdsec:7422"`                                   |
-| `bouncers[].crowdsecAppsecPath`                  | Crowdsec Appsec Server path                                                                | `"/"`                                               |
-| `bouncers[].crowdsecAppsecFailureBlock`          | Block request when Crowdsec Appsec Server has a status 500                                  | `true`                                              |
-| `bouncers[].crowdsecAppsecUnreachableBlock`      | Block request when Crowdsec Appsec Server is unreachable                                   | `true`                                              |
-| `bouncers[].crowdsecAppsecBodyLimit`             | Transmit only the first number of bytes to Crowdsec Appsec Server                          | `10485760`                                          |
-| `bouncers[].crowdsecLapiScheme`                  | LAPI connection scheme                                                                     | `http`                                              |
-| `bouncers[].crowdsecLapiHost`                   | LAPI host and port                                                                         | `"crowdsec:8080"`                                   |
-| `bouncers[].crowdsecLapiPath`                    | LAPI path                                                                                  | `"/"`                                               |
-| `bouncers[].crowdsecLapiKey`                     | LAPI access key                                                                            | `""`                                                |
-| `bouncers[].crowdsecLapiTlsInsecureVerify`       | Disable verification of certificate presented by Crowdsec LAPI                              | `false`                                             |
-| `bouncers[].crowdsecLapiTlsCertificateAuthority` | PEM-encoded Certificate Authority of the Crowdsec LAPI                                     | `""`                                                |
-| `bouncers[].crowdsecLapiTlsCertificateBouncer`   | PEM-encoded client Certificate of the Bouncer                                              | `""`                                                |
-| `bouncers[].crowdsecLapiTlsCertificateBouncerKey`| PEM-encoded client private key of the Bouncer                                              | `""`                                                |
-| `bouncers[].clientTrustedIPs`                    | List of client IPs to trust, they will bypass any check from the bouncer or cache           | `[]`                                                |
-| `bouncers[].remediationHeadersCustomName`        | Name of the header in response when requests are cancelled                                 | `""`                                                |
-| `bouncers[].forwardedHeadersCustomName`          | Name of the header where the real IP of the client should be retrieved                     | `"X-Forwarded-For"`                                 |
-| `bouncers[].forwardedHeadersTrustedIPs`          | List of IPs of trusted Proxies that are in front of traefik                                | `[]`                                                |
-| `bouncers[].redisCacheEnabled`                   | Enable Redis cache instead of in-memory cache                                              | `false`                                             |
-| `bouncers[].redisCacheHost`                      | Hostname and port for the Redis service                                                    | `"redis:6379"`                                      |
-| `bouncers[].redisCachePassword`                  | Password for the Redis service                                                             | `""`                                                |
-| `bouncers[].redisCacheDatabase`                  | Database selection for the Redis service                                                   | `""`                                                |
-| `bouncers[].redisUnreachableBlock`               | Block request when Redis is unreachable                                                    | `true`                                              |
-| `bouncers[].httpTimeoutSeconds`                  | Default timeout in seconds for contacting Crowdsec LAPI                                    | `10`                                                |
-| `bouncers[].updateIntervalSeconds`               | Interval between requests to fetch blacklisted IPs from LAPI (used only in stream mode)     | `60`                                                |
-| `bouncers[].updateMaxFailure`                    | Maximum number of times we can not reach Crowdsec before blocking traffic (used in stream and alone mode) | `0`                                                |
-| `bouncers[].defaultDecisionSeconds`              | Maximum decision duration (used only in live mode)                                         | `60`                                                |
-| `bouncers[].crowdsecCapiMachineId`               | Login for Crowdsec CAPI (used only in alone mode)                                          | `""`                                                |
-| `bouncers[].crowdsecCapiPassword`                | Password for Crowdsec CAPI (used only in alone mode)                                       | `""`                                                |
-| `bouncers[].crowdsecCapiScenarios`               | Scenarios for Crowdsec CAPI (used only in alone mode)                                      | `[]`                                                |
-| `bouncers[].captchaProvider`                     | Provider to validate the captcha                                                           | `""`                                                |
-| `bouncers[].captchaSiteKey`                      | Site key for the captcha provider                                                          | `""`                                                |
-| `bouncers[].captchaSecretKey`                    | Site secret key for the captcha provider                                                   | `""`                                                |
-| `bouncers[].captchaGracePeriodSeconds`           | Period after validation of a captcha before a new validation is required                   | `1800`                                              |
-| `bouncers[].captchaHTMLFilePath`                 | Path where the captcha template is stored                                                  | `"/captcha.html"`                                   |
-| `bouncers[].banHTMLFilePath`                     | Path where the ban html file is stored                                                     | `""`                                                |
+| `bouncers`                                       | Map Object with bouncers where key is the name of the bouncer and values of this key are bouncer options theat are listed below                                                                        | `{}`                                           |
 
-The full list of parameters can be found in the `values.yaml` file.
+#### Bouncer configuration parameters
+| Parameter                                                | Description                                                                                 | Default Value                               |
+|---------------------------------------------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------|
+| `enabled`                             | Whether the plugin is enabled                                                              | `true`                                             |
+| `logLevel`                            | Logging level                                                                              | `INFO`                                              |
+| `crowdsecMode`                        | CrowdSec operation mode                                                                    | `live`                                              |
+| `crowdsecAppsecEnabled`               | Enable Crowdsec Appsec Server (WAF)                                                        | `false`                                             |
+| `crowdsecAppsecHost`                  | Crowdsec Appsec Server host and port                                                       | `"crowdsec:7422"`                                   |
+| `crowdsecAppsecPath`                  | Crowdsec Appsec Server path                                                                | `"/"`                                               |
+| `crowdsecAppsecFailureBlock`          | Block request when Crowdsec Appsec Server has a status 500                                  | `true`                                              |
+| `crowdsecAppsecUnreachableBlock`      | Block request when Crowdsec Appsec Server is unreachable                                   | `true`                                              |
+| `crowdsecAppsecBodyLimit`             | Transmit only the first number of bytes to Crowdsec Appsec Server                          | `10485760`                                          |
+| `crowdsecLapiScheme`                  | LAPI connection scheme                                                                     | `http`                                              |
+| `crowdsecLapiHost`                   | LAPI host and port                                                                         | `"crowdsec-service.crowdsec.svc.cluster.local:8080"`                                   |
+| `crowdsecLapiPath`                    | LAPI path                                                                                  | `"/"`                                               |
+| `crowdsecLapiKey`                     | LAPI access key                                                                            | `""`                                                |
+| `crowdsecLapiTlsInsecureVerify`       | Disable verification of certificate presented by Crowdsec LAPI                              | `false`                                             |
+| `crowdsecLapiTlsCertificateAuthority` | PEM-encoded Certificate Authority of the Crowdsec LAPI                                     | `""`                                                |
+| `crowdsecLapiTlsCertificateBouncer`   | PEM-encoded client Certificate of the Bouncer                                              | `""`                                                |
+| `crowdsecLapiTlsCertificateBouncerKey`| PEM-encoded client private key of the Bouncer                                              | `""`                                                |
+| `clientTrustedIPs`                    | List of client IPs to trust, they will bypass any check from the bouncer or cache           | `[]`                                                |
+| `remediationHeadersCustomName`        | Name of the header in response when requests are cancelled                                 | `""`                                                |
+| `forwardedHeadersCustomName`          | Name of the header where the real IP of the client should be retrieved                     | `"X-Forwarded-For"`                                 |
+| `forwardedHeadersTrustedIPs`          | List of IPs of trusted Proxies that are in front of traefik                                | `[]`                                                |
+| `redisCacheEnabled`                   | Enable Redis cache instead of in-memory cache                                              | `false`                                             |
+| `redisCacheHost`                      | Hostname and port for the Redis service                                                    | `"redis:6379"`                                      |
+| `redisCachePassword`                  | Password for the Redis service                                                             | `""`                                                |
+| `redisCacheDatabase`                  | Database selection for the Redis service                                                   | `""`                                                |
+| `redisUnreachableBlock`               | Block request when Redis is unreachable                                                    | `true`                                              |
+| `httpTimeoutSeconds`                  | Default timeout in seconds for contacting Crowdsec LAPI                                    | `10`                                                |
+| `updateIntervalSeconds`               | Interval between requests to fetch blacklisted IPs from LAPI (used only in stream mode)     | `60`                                                |
+| `updateMaxFailure`                    | Maximum number of times we can not reach Crowdsec before blocking traffic (used in stream and alone mode) | `0`                                                |
+| `defaultDecisionSeconds`              | Maximum decision duration (used only in live mode)                                         | `60`                                                |
+| `crowdsecCapiMachineId`               | Login for Crowdsec CAPI (used only in alone mode)                                          | `""`                                                |
+| `crowdsecCapiPassword`                | Password for Crowdsec CAPI (used only in alone mode)                                       | `""`                                                |
+| `crowdsecCapiScenarios`               | Scenarios for Crowdsec CAPI (used only in alone mode)                                      | `[]`                                                |
+| `captchaProvider`                     | Provider to validate the captcha                                                           | `""`                                                |
+| `captchaSiteKey`                      | Site key for the captcha provider                                                          | `""`                                                |
+| `captchaSecretKey`                    | Site secret key for the captcha provider                                                   | `""`                                                |
+| `captchaGracePeriodSeconds`           | Period after validation of a captcha before a new validation is required                   | `1800`                                              |
+| `captchaHTMLFilePath`                 | Path where the captcha template is stored                                                  | `"/captcha.html"`                                   |
+| `banHTMLFilePath`                     | Path where the ban html file is stored                                                     | `""`                                                |
+
+The full list of parameters can be found in the `values.yaml` file. Or by executing the command
+
+```bash
+helm show values tambovchanin/crowdsec-bouncer-traefik
+```
+
+#### Exmple of valuees.yaml file
+
+```yaml
+pluginName: crowdsec-bouncer-traefik-plugin
+
+namespace: traefik
+
+bouncers:
+  default:
+    enabled: true
+    crowdsecLapiScheme: http
+    crowdsecLapiHost: crowdsec-service.crowdsec:8080
+    crowdsecLapiKey: <api-key-default>
+  external-api:
+    enabled: true
+    crowdsecLapiScheme: http
+    crowdsecLapiHost: external.crowdsec.service:443
+    crowdsecLapiKey: <api-key-external>
+    redisCacheEnabled: true
+    redisCacheHost: "redis.crowdsec:6379"
+    redisCachePassword: <redis-password>
+
+```
 
 ## Using Multiple Bouncers
 
-The chart supports deploying multiple bouncers with different configurations. To do this, add additional items to the `bouncers` array in the `values.yaml` file or during installation via the command line:
+The chart supports deploying multiple bouncers map different configurations. To do this, add additional items to the `bouncers` array in the `values.yaml` file or during installation via the command line:
 
 ```bash
+# Installing with custom parameters
 helm install crowdsec-bouncer-traefik tambovchanin/crowdsec-bouncer-traefik \
-  --set bouncers[0].name=public \
-  --set bouncers[0].CrowdsecLapiKey=key1 \
-  --set bouncers[1].name=internal \
-  --set bouncers[1].CrowdsecLapiKey=key2 \
-  --set bouncers[1].CrowdsecMode=stream
+  --set bouncers.public.CrowdsecLapiKey=key1 \
+  --set bouncers.internal.CrowdsecLapiKey=key2 \
+  --set bouncers.internal.CrowdsecMode=stream
 ```
 
 ## Usage in IngressRoute
