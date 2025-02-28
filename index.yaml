@@ -3,6 +3,27 @@ entries:
   crowdsec-bouncer-traefik:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2025-02-28T10:33:25.661148817Z"
+    description: A Helm chart for deploying CrowdSec Bouncer Traefik plugin
+    digest: 91e52196f246079fce8f202e19d46ff2ef05aa67eb1fee3e906232e287faa91a
+    home: https://tambovchanin.github.io/helm-charts
+    keywords:
+    - crowdsec
+    - security
+    - bouncer
+    - traefik
+    maintainers:
+    - email: info@tambovchanin.com
+      name: Denis Shiriaev
+    name: crowdsec-bouncer-traefik
+    sources:
+    - https://github.com/tambovchanin/helm-charts/charts/crowdsec-bouncer-helm
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/crowdsec-bouncer-traefik-0.1.1/crowdsec-bouncer-traefik-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-02-27T19:54:00.132831804Z"
     description: A Helm chart for deploying CrowdSec Bouncer Traefik plugin
     digest: d3b148e03a94d59ed8926b45c23f16a72991698d814b2f3f24a2f04bd6b9514b
@@ -22,4 +43,4 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/crowdsec-bouncer-traefik-0.1.0/crowdsec-bouncer-traefik-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-27T19:54:00.132837354Z"
+generated: "2025-02-28T10:33:25.661156591Z"
