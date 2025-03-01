@@ -2,7 +2,7 @@
 Expand the name of the chart.
 */}}
 {{- define "traefik-middleware.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- printf "traefik-%s-%s" .pluginName .name | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
@@ -41,6 +41,5 @@ Return the namespace to use for the resources.
 Create a middleware name with a bouncer name
 */}}
 {{- define "traefik-middleware.middlewareName" -}}
-{{- $bouncerName := . -}}
-{{- printf "traefik-middleware-%s" $bouncerName }}
-{{- end -}}
+{{- printf "traefik-%s" . | trunc 63 | trimSuffix "-" }}
+{{- end }}
