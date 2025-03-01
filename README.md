@@ -1,12 +1,12 @@
 # CrowdSec Bouncer for Traefik
 
-This Helm chart add Midlleware configurations for defined in Traefik middlewares and installed plugins that needed extra configuration.
+This Helm chart adds middleware configurations for Traefik, including installed plugins that require additional configuration.
 
 ## Prerequisites
 
 - Kubernetes 1.16+
 - Helm 3.0+
-- Installed Traefik
+- Traefik installed
 
 ## Installation
 
@@ -22,28 +22,26 @@ helm install traefik-middleware tambovchanin/traefik-middleware
 
 # Installing with custom parameters
 helm install traefik-middleware tambovchanin/traefik-middleware \
-  --set middlewares.test-ipallowlist.ipallowlist.sourceRange="127.0.0.1/32, 192.168.1.0/24" \
-  --set middlewares.test-ipallowlist.ipallowlist.ipstrategy.excludedips="127.0.0.1/32, 192.168.1.7"
+  --set middlewares.test-ipallowlist.ipallowlist.sourceRange="127.0.0.1/32,192.168.1.0/24" \
+  --set middlewares.test-ipallowlist.ipallowlist.ipstrategy.excludedIPs="127.0.0.1/32,192.168.1.7"
 ```
 
 ## Configuration
 
 The following table lists the configurable parameters of the chart and their default values.
 
+### Configuration Parameters
+| Parameter         | Description                                                   | Default Value |
+|------------------|---------------------------------------------------------------|--------------|
+| `namespace`      | Namespace in which Traefik is deployed                        | `traefik`    |
+| `middlewares`    | Map object containing middleware configurations               | `{}`         |
 
-#### Configuration parameters
-| Parameter                                                | Description                                                                                 | Default Value                               |
-|---------------------------------------------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| `namespace`                                             | Name of the namespace                                                                      | `traefik`                                           |
-| `middlewares`                                       | Map Object with middlewares where key is the name of the middleware and values are middleware config options                                                                        | `{}`                                           |
-
-
-#### Exmple of valuees.yaml file
+### Example `values.yaml` File
 
 ```yaml
 namespace: traefik
 
-middlewares: {}
+middlewares:
   basicAuth:
     prod-auth:
       secret: authsecret
@@ -58,12 +56,12 @@ middlewares: {}
     dev-allow:
       sourceRange:
         - 127.0.0.1/32
-        - 192.168.1.7
+        - 192.168.1.7/32
 ```
 
 ## Using Multiple Middlewares
 
-The chart supports deploying multiple bouncers map different configurations. To do this, add additional items to the `bouncers` array in the `values.yaml` file or during installation via the command line:
+The chart supports deploying multiple middleware configurations. To do this, add additional items to the `middlewares` section in the `values.yaml` file or specify them during installation via the command line:
 
 ```bash
 # Installing with custom parameters
@@ -72,13 +70,12 @@ helm install traefik-middleware tambovchanin/traefik-middleware \
   --set middlewares.basicAuth.test-auth.users="test:$apr1$QWgJ9J9w$,test2:$apr1$QWgJ9J9w$" \
   --set middlewares.basicAuth.test-auth.headerField=Authorization \
   --set middlewares.basicAuth.test-auth.realm=Restricted \
-  --set middlewares.ipallowlist.dev-allow.sourceRange="127.0.0.1/32, 192.168.1.0/24"
-
+  --set middlewares.ipAllowList.dev-allow.sourceRange="127.0.0.1/32,192.168.1.0/24"
 ```
 
 ## Usage in IngressRoute
 
-After installation, you can use the created middleware in your IngressRoute:
+After installation, you can use the created middleware in your `IngressRoute`:
 
 ```yaml
 apiVersion: traefik.io/v1alpha1
@@ -107,3 +104,4 @@ spec:
 helm repo update
 helm upgrade traefik-middleware tambovchanin/traefik-middleware
 ```
+

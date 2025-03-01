@@ -1,0 +1,20 @@
+{{- range $pluginName, $pluginCongigs := .Values.middlewares }}
+{{- range $name, $config := $pluginCongigs }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "traefik-middleware.middlewareName" $pluginName }}
+  namespace: {{ include "traefik-middleware.namespace" $ }}
+  labels:
+    app.kubernetes.io/name: {{ include "traefik-middleware.name" $name }}
+    helm.sh/chart: {{ include "traefik-middleware.chart" $ }}
+    app.kubernetes.io/instance: {{ $.Release.Name }}
+    app.kubernetes.io/component: traefik-middleware
+    app.kubernetes.io/part-of: traefik
+spec:
+  plugin:
+    {{ $.Values.pluginName }}:
+      {{- toYaml $config | nindent 6 }}
+{{- end }}
+{{- end }}
