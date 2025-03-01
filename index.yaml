@@ -43,4 +43,27 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/crowdsec-bouncer-traefik-0.1.0/crowdsec-bouncer-traefik-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-28T10:33:25.661156591Z"
+  traefik-middleware:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-03-01T14:11:34.337887295Z"
+    description: A Helm chart for deploying Traefik Middleware config options for
+      plugins and middlewares
+    digest: c170bca7aadaf9268d4185db133dfe9f352746ae590fc47a05bcfe3bafae56f7
+    home: https://tambovchanin.github.io/helm-charts
+    keywords:
+    - traefik
+    - middleware
+    - plugin
+    - configuration
+    maintainers:
+    - email: info@tambovchanin.com
+      name: Denis Shiriaev
+    name: traefik-middleware
+    sources:
+    - https://github.com/tambovchanin/helm-charts/charts/traefik-middleware
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/traefik-middleware-0.0.1/traefik-middleware-0.0.1.tgz
+    version: 0.0.1
+generated: "2025-03-01T14:11:34.337899147Z"
