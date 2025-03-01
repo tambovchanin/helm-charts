@@ -1,6 +1,6 @@
 # CrowdSec Bouncer for Traefik
 
-This Helm chart add Midlleware configurations for defined in Traefik middlewares and installed plugins that needed extra configuration.
+This Helm chart add Middleware configurations for defined in Traefik middlewares and installed plugins that needed extra configuration.
 
 ## Prerequisites
 

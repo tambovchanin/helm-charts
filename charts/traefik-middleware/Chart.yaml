@@ -1,0 +1,17 @@
+apiVersion: v2
+name: traefik-middleware
+description: A Helm chart for deploying Traefik Middleware config options for plugins and middlewares
+type: application
+version: 0.0.1
+appVersion: 1.0.0
+keywords:
+  - traefik
+  - middleware
+  - plugin
+  - configuration
+home: https://tambovchanin.github.io/helm-charts
+maintainers:
+  - name: Denis Shiriaev
+    email: info@tambovchanin.com
+sources:
+  - https://github.com/tambovchanin/helm-charts/charts/traefik-middleware
