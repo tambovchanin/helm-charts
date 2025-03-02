@@ -1,0 +1,14 @@
+apiVersion: v2
+name: cronjob
+description: A generic helm cronjob chart for kubernetes
+type: application
+version: 0.0.1
+appVersion: 1.0.0
+keywords:
+  - cronjob
+home: https://tambovchanin.github.io/helm-charts
+maintainers:
+  - name: Denis Shiriaev
+    email: info@tambovchanin.com
+sources:
+  - https://github.com/tambovchanin/helm-charts/charts/cronjob
