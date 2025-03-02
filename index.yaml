@@ -1,5 +1,24 @@
 apiVersion: v1
 entries:
+  cronjob:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-03-02T20:59:36.898795173Z"
+    description: A generic helm cronjob chart for kubernetes
+    digest: 9b3c10c1592aeb2037d1ea469bdab9f28a27963f689bbb0c577b7c87a4e6fcea
+    home: https://tambovchanin.github.io/helm-charts
+    keywords:
+    - cronjob
+    maintainers:
+    - email: info@tambovchanin.com
+      name: Denis Shiriaev
+    name: cronjob
+    sources:
+    - https://github.com/tambovchanin/helm-charts/charts/cronjob
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/cronjob-0.0.1/cronjob-0.0.1.tgz
+    version: 0.0.1
   crowdsec-bouncer-traefik:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -110,4 +129,4 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/traefik-middleware-0.0.1/traefik-middleware-0.0.1.tgz
     version: 0.0.1
-generated: "2025-03-01T18:37:43.227199342Z"
+generated: "2025-03-02T20:59:36.898805011Z"
