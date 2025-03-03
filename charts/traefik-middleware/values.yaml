@@ -1,0 +1,23 @@
+# Default values for traefik-middleware chart.
+# This is a YAML-formatted file.
+
+# Namespace name
+namespace: traefik
+
+# Bouncers array
+middlewares: {}
+  # basicAuth:
+  #   prod-auth:
+  #     secret: authsecret
+  #   test-auth:
+  #     users:
+  #       - "test:$apr1$QWgJ9J9w$
+  #       - "test2:$apr1$QWgJ9J9w$"
+  #     headerField: "Authorization"
+  #     realm: "Restricted"
+
+  # ipAllowList:
+  #   prod-allow:
+  #     sourceRange:
+  #       - 127.0.0.1/32
+  #       - 192.168.1.7
