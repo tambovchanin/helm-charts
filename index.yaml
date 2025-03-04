@@ -65,6 +65,28 @@ entries:
   traefik-middleware:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2025-03-04T19:31:23.680040525Z"
+    description: A Helm chart for deploying Traefik Middleware config options for
+      plugins and middlewares
+    digest: 902af3b3ab4240a887f45e97b9801432590ab23da6b40e65bcc2434f0e031aae
+    home: https://tambovchanin.github.io/helm-charts
+    keywords:
+    - traefik
+    - middleware
+    - plugin
+    - configuration
+    maintainers:
+    - email: info@tambovchanin.com
+      name: Denis Shiriaev
+    name: traefik-middleware
+    sources:
+    - https://github.com/tambovchanin/helm-charts/charts/traefik-middleware
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/traefik-middleware-0.0.5/traefik-middleware-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-03-04T17:35:32.751845678Z"
     description: A Helm chart for deploying Traefik Middleware config options for
       plugins and middlewares
@@ -151,4 +173,4 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/traefik-middleware-0.0.1/traefik-middleware-0.0.1.tgz
     version: 0.0.1
-generated: "2025-03-04T17:35:32.751865766Z"
+generated: "2025-03-04T19:31:23.680072214Z"
