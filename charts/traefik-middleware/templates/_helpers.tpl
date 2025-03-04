@@ -41,5 +41,5 @@ Return the namespace to use for the resources.
 Create a middleware name with a bouncer name
 */}}
 {{- define "traefik-middleware.middlewareName" -}}
-{{- printf "traefik-%s" . | trunc 63 | trimSuffix "-" }}
+{{- printf "traefik-%s" . | trunc 63 | lower | trimSuffix "-" }}
 {{- end }}
