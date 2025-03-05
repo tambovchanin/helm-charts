@@ -31,10 +31,11 @@ helm install traefik-middleware tambovchanin/traefik-middleware \
 The following table lists the configurable parameters of the chart and their default values.
 
 ### Configuration Parameters
-| Parameter         | Description                                                   | Default Value |
-|------------------|---------------------------------------------------------------|--------------|
-| `namespace`      | Namespace in which Traefik is deployed                        | `traefik`    |
-| `middlewares`    | Map object containing middleware configurations               | `{}`         |
+| Parameter         | Description                                                             | Default Value |
+|------------------|--------------------------------------------------------------------------|---------------|
+| `namespace`      | Namespace in which Traefik is deployed                                   | `traefik`     |
+| `middlewares`    | Map object containing middleware (internal) configurations               | `{}`          |
+| `plugins`        | Map object containing plugins (external middlewares) configurations      | `{}`          |
 
 ### Example `values.yaml` File
 
@@ -57,6 +58,20 @@ middlewares:
       sourceRange:
         - 127.0.0.1/32
         - 192.168.1.7/32
+
+plugins:
+  google-oidc-auth-middleware:
+    default:
+      authorized:
+        emails:
+          - user@example.com
+        domains:
+          - example.com
+      oidc:
+        clientID: gooole-oidc-client-id
+        clientSecret: gooole-oidc-client-secret-id
+      cookie:
+        secret: cookie-secret
 ```
 
 ## Using Multiple Middlewares

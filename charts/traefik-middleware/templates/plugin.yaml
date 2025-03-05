@@ -1,4 +1,4 @@
-{{- range $pluginName, $pluginConfigs := .Values.middlewares }}
+{{- range $pluginName, $pluginConfigs := .Values.plugins }}
   {{- range $name, $config := $pluginConfigs }}
     {{- $fullName := printf "%s-%s" $pluginName $name }}
 ---
@@ -14,7 +14,8 @@ metadata:
     app.kubernetes.io/component: traefik-middleware
     app.kubernetes.io/part-of: traefik
 spec:
-  {{ $name }}:
-    {{- toYaml $config | nindent 4 }}
+  plugin:
+    {{ $pluginName }}:
+      {{- toYaml $config | nindent 6 }}
   {{- end }}
 {{- end }}
