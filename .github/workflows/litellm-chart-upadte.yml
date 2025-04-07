@@ -1,0 +1,54 @@
+name: Update litellm Chart
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-chart:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v3
+
+    - name: Set up Helm
+      uses: azure/setup-helm@v3
+      with:
+        version: v4.3.0
+
+    - name: Check for latest version of litellm-helm
+      id: check_version
+      run: |
+        LATEST_VERSION=$(helm show chart oci://ghcr.io/berriai/litellm-helm | grep '^version:' | awk '{print $2}')
+        echo "latest_version=$LATEST_VERSION" >> $GITHUB_ENV
+
+    - name: Get current local version
+      run: |
+        CHART_PATH="./charts/litellm/Chart.yaml"
+        if [ -f $CHART_PATH ]; then
+          LOCAL_VERSION=$(grep '^version:' $CHART_PATH | awk '{print $2}')
+        else
+          LOCAL_VERSION="none"
+        fi
+        echo "local_version=$LOCAL_VERSION" >> $GITHUB_ENV
+
+    - name: Update chart if there is a new version
+      if: steps.check_version.outputs.latest_version != env.local_version
+      run: |
+        echo "Updating chart from version $LOCAL_VERSION to $LATEST_VERSION"
+        helm pull oci://ghcr.io/berriai/litellm-helm --version $LATEST_VERSION
+        tar -zxvf "litellm-helm-$LATEST_VERSION.tgz" -C ./charts
+        mv ./charts/litellm-helm ./charts/litellm
+        rm -f "litellm-helm-$LATEST_VERSION.tgz"
+
+    - name: Commit and push changes
+      if: steps.check_version.outputs.latest_version != env.local_version
+      run: |
+        git config user.name "$GITHUB_ACTOR"
+        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        git add ./charts/litellm
+        git commit -m "Update litellm helm chart to version $LATEST_VERSION"
+        git push
