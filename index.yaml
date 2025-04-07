@@ -62,6 +62,26 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/crowdsec-bouncer-traefik-0.1.0/crowdsec-bouncer-traefik-0.1.0.tgz
     version: 0.1.0
+  litellm-helm:
+  - apiVersion: v2
+    appVersion: v1.65.4-stable
+    created: "2025-04-07T21:11:45.436791671Z"
+    dependencies:
+    - condition: db.deployStandalone
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: '>=13.3.0'
+    - condition: redis.enabled
+      name: redis
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: '>=18.0.0'
+    description: Call all LLM APIs using the OpenAI format
+    digest: 56b40e15faebaccaf756a3cd6cbf2496053c9f7c8e3f0b092e9b23fdffac272c
+    name: litellm-helm
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/litellm-helm-0.1.652/litellm-helm-0.1.652.tgz
+    version: 0.1.652
   traefik-middleware:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -195,4 +215,4 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/traefik-middleware-0.0.1/traefik-middleware-0.0.1.tgz
     version: 0.0.1
-generated: "2025-03-05T08:37:54.470705315Z"
+generated: "2025-04-07T21:11:45.43681764Z"
