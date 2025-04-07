@@ -1,4 +1,4 @@
-name: Update litellm Chart
+name: Update LiteLLM Chart
 
 on:
   schedule:
@@ -46,7 +46,7 @@ jobs:
         rm -f "litellm-helm-$LATEST_VERSION.tgz"
 
     - name: Commit and push changes
-      if: steps.check_version.outputs.latest_version != env.local_version
+      if: env.LATEST_VERSION != env.LOCAL_VERSION
       run: |
         git config user.name "$GITHUB_ACTOR"
         git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
