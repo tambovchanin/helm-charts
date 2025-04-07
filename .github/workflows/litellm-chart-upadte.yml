@@ -8,7 +8,7 @@ on:
 jobs:
   update-chart:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
 
     steps:
     - name: Check out the repository
@@ -16,25 +16,28 @@ jobs:
 
     - name: Set up Helm
       uses: azure/setup-helm@v3
+      with:
+        version: 'v3.11.2'
 
     - name: Check for latest version of litellm-helm
       id: check_version
       run: |
         LATEST_VERSION=$(helm show chart oci://ghcr.io/berriai/litellm-helm | grep '^version:' | awk '{print $2}')
-        echo "latest_version=$LATEST_VERSION" >> $GITHUB_ENV
+        echo "LATEST_VERSION=$LATEST_VERSION" >> $GITHUB_ENV
 
     - name: Get current local version
+      id: get_local_version
       run: |
         CHART_PATH="./charts/litellm/Chart.yaml"
-        if [ -f $CHART_PATH ]; then
-          LOCAL_VERSION=$(grep '^version:' $CHART_PATH | awk '{print $2}')
+        if [ -f "$CHART_PATH" ]; then
+          LOCAL_VERSION=$(grep '^version:' "$CHART_PATH" | awk '{print $2}')
         else
           LOCAL_VERSION="none"
         fi
-        echo "local_version=$LOCAL_VERSION" >> $GITHUB_ENV
+        echo "LOCAL_VERSION=$LOCAL_VERSION" >> $GITHUB_ENV
 
     - name: Update chart if there is a new version
-      if: steps.check_version.outputs.latest_version != env.local_version
+      if: env.LATEST_VERSION != env.LOCAL_VERSION
       run: |
         echo "Updating chart from version $LOCAL_VERSION to $LATEST_VERSION"
         helm pull oci://ghcr.io/berriai/litellm-helm --version $LATEST_VERSION
