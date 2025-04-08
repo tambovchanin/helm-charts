@@ -10,8 +10,6 @@ metadata:
   labels:
     app: {{ template "pvc.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode | quote }}
