@@ -82,6 +82,17 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/litellm-helm-0.1.652/litellm-helm-0.1.652.tgz
     version: 0.1.652
+  pvc:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-04-08T12:48:46.905461817Z"
+    description: A Helm chart to create PVC in Kubernetes Cluster
+    digest: 53064d93e4fd473bc5972f144c1956f013310f7914ead7b7dd1c96fff3f232f8
+    name: pvc
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/pvc-0.1.0/pvc-0.1.0.tgz
+    version: 0.1.0
   traefik-middleware:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -215,4 +226,4 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/traefik-middleware-0.0.1/traefik-middleware-0.0.1.tgz
     version: 0.0.1
-generated: "2025-04-07T21:11:45.43681764Z"
+generated: "2025-04-08T12:48:46.905488326Z"
