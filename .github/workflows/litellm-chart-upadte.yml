@@ -46,6 +46,7 @@ jobs:
         echo "Updating chart from version $LOCAL_VERSION to $LATEST_VERSION"
         helm pull oci://ghcr.io/berriai/litellm-helm --version $LATEST_VERSION
         tar -zxvf "litellm-helm-$LATEST_VERSION.tgz" -C ./charts
+        rm -fR ./charts/litellm
         mv ./charts/litellm-helm ./charts/litellm
         rm -f "litellm-helm-$LATEST_VERSION.tgz"
 
