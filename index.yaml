@@ -64,6 +64,25 @@ entries:
     version: 0.1.0
   litellm-helm:
   - apiVersion: v2
+    appVersion: v1.65.7-nightly
+    created: "2025-04-12T11:09:53.179481559Z"
+    dependencies:
+    - condition: db.deployStandalone
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: '>=13.3.0'
+    - condition: redis.enabled
+      name: redis
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: '>=18.0.0'
+    description: Call all LLM APIs using the OpenAI format
+    digest: 1bd45288961bc09bb9d08f386976bc22ff079b710ca8d963e3ec6769c5ccb9db
+    name: litellm-helm
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/litellm-helm-0.1.655/litellm-helm-0.1.655.tgz
+    version: 0.1.655
+  - apiVersion: v2
     appVersion: v1.65.4-stable
     created: "2025-04-07T21:11:45.436791671Z"
     dependencies:
@@ -236,4 +255,4 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/traefik-middleware-0.0.1/traefik-middleware-0.0.1.tgz
     version: 0.0.1
-generated: "2025-04-08T14:35:54.908195257Z"
+generated: "2025-04-12T11:09:53.179500645Z"
