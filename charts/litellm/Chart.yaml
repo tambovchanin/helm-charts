@@ -12,4 +12,4 @@ dependencies:
 description: Call all LLM APIs using the OpenAI format
 name: litellm-helm
 type: application
-version: 0.1.662
+version: 0.1.663
