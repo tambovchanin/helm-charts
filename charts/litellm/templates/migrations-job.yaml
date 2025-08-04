@@ -5,15 +5,8 @@ kind: Job
 metadata:
   name: {{ include "litellm.fullname" . }}-migrations
   annotations:
-    {{- if .Values.migrationJob.hooks.argocd.enabled }}
     argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-    {{- end }}
-    {{- if .Values.migrationJob.hooks.helm.enabled }}
-    helm.sh/hook: "pre-install,pre-upgrade"
-    helm.sh/hook-delete-policy: "before-hook-creation"
-    helm.sh/hook-weight: {{ .Values.migrationJob.hooks.helm.weight | default "1" | quote }}
-    {{- end }}
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation # delete old migration on a new deploy in case the migration needs to make updates
     checksum/config: {{ toYaml .Values | sha256sum }}
 spec:
   template:
@@ -54,6 +47,8 @@ spec:
             - name: DATABASE_URL
               value: postgresql://{{ .Values.postgresql.auth.username }}:{{ .Values.postgresql.auth.password }}@{{ .Release.Name }}-postgresql/{{ .Values.postgresql.auth.database }}
             {{- end }}
+            - name: DISABLE_SCHEMA_UPDATE
+              value: "false" # always run the migration from the Helm PreSync hook, override the value set
             {{- if .Values.envVars }}
             {{- range $key, $val := .Values.envVars }}
             - name: {{ $key }}
@@ -63,8 +58,6 @@ spec:
             {{- with .Values.extraEnvVars }}
               {{- toYaml . | nindent 12 }}
             {{- end }}
-            - name: DISABLE_SCHEMA_UPDATE
-              value: "false" # always run the migration from the Helm PreSync hook, override the value set
           {{- with .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
