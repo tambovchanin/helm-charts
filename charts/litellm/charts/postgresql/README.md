@@ -1,6 +1,6 @@
 <!--- app-name: PostgreSQL -->
 
-# Bitnami package for PostgreSQL
+# Bitnami Secure Images Helm chart for PostgreSQL
 
 PostgreSQL (Postgres) is an open source object-relational database known for reliability and data integrity. ACID-compliant, it supports foreign keys, joins, views, triggers and stored procedures.
 
@@ -301,6 +301,8 @@ This way, the credentials will be available in all of the subcharts.
 ### FIPS parameters
 
 The FIPS parameters only have effect if you are using images from the [Bitnami Secure Images catalog](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+
+For more information on this new support, please refer to the [FIPS Compliance section](https://techdocs.broadcom.com/us/en/vmware-tanzu/bitnami-secure-images/bitnami-secure-images/services/bsi-doc/security-frameworks-FIPS-compliance.html).
 
 ### Backup and restore
 
