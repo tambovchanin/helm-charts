@@ -3,6 +3,16 @@ entries:
   3xui:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-11-06T22:11:16.519630989Z"
+    description: A Helm chart for Kubernetes
+    digest: 9bcb50e6fa796ad9489199bec8fea4264ac41742457dd0df72b9030955188f31
+    name: 3xui
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/3xui-0.1.1/3xui-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-11-06T22:01:19.921784625Z"
     description: A Helm chart for Kubernetes
     digest: d5dfb1bc4203ce07536e03cbafda2b1261071b74464b6b58edf02a42781af1eb
@@ -342,4 +352,4 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/traefik-middleware-0.0.1/traefik-middleware-0.0.1.tgz
     version: 0.0.1
-generated: "2025-11-06T22:01:20.121542807Z"
+generated: "2025-11-06T22:11:16.520740628Z"
