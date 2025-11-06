@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  3xui:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-11-06T22:01:19.921784625Z"
+    description: A Helm chart for Kubernetes
+    digest: d5dfb1bc4203ce07536e03cbafda2b1261071b74464b6b58edf02a42781af1eb
+    name: 3xui
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/3xui-0.1.0/3xui-0.1.0.tgz
+    version: 0.1.0
   cronjob:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -63,6 +74,25 @@ entries:
     - https://github.com/tambovchanin/helm-charts/releases/download/crowdsec-bouncer-traefik-0.1.0/crowdsec-bouncer-traefik-0.1.0.tgz
     version: 0.1.0
   litellm-helm:
+  - apiVersion: v2
+    appVersion: v1.79.1.rc.2
+    created: "2025-11-06T22:01:20.121490319Z"
+    dependencies:
+    - condition: db.deployStandalone
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: '>=13.3.0'
+    - condition: redis.enabled
+      name: redis
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: '>=18.0.0'
+    description: Call all LLM APIs using the OpenAI format
+    digest: d6763cb42bd6f14070b1b55544e969de8574daf86eaf031f59d4a68fc5fb2f09
+    name: litellm-helm
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/litellm-helm-0.1.808/litellm-helm-0.1.808.tgz
+    version: 0.1.808
   - apiVersion: v2
     appVersion: v1.71.2-nightly
     created: "2025-05-29T15:21:24.681942416Z"
@@ -312,4 +342,4 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/traefik-middleware-0.0.1/traefik-middleware-0.0.1.tgz
     version: 0.0.1
-generated: "2025-05-29T15:21:24.681997849Z"
+generated: "2025-11-06T22:01:20.121542807Z"
