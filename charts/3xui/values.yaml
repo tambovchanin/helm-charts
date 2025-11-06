@@ -1,0 +1,17 @@
+image:
+  repository: ghcr.io/mhsanaei/3x-ui
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 2053  # стандартный порт 3x-ui
+
+persistence:
+  enabled: true
+  dbPath: /etc/x-ui/
+  certPath: /root/cert/
+
+env:
+  XRAY_VMESS_AEAD_FORCED: "false"
+  XUI_ENABLE_FAIL2BAN: "true"
