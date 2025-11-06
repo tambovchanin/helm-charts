@@ -362,4 +362,15 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/traefik-middleware-0.0.1/traefik-middleware-0.0.1.tgz
     version: 0.0.1
-generated: "2025-11-06T22:23:49.040832044Z"
+  xui:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-11-06T22:41:53.25004864Z"
+    description: A Helm chart for Kubernetes
+    digest: eca9b9b909a90509d3907e1439dfda2b4898755aa59503d45e7f26c5bb49b555
+    name: xui
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/xui-0.2.1/xui-0.2.1.tgz
+    version: 0.2.1
+generated: "2025-11-06T22:41:53.250102881Z"
