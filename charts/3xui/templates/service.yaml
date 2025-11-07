@@ -11,5 +11,11 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    {{- if .Values.xray.enabled }}
+    - port: {{ .Values.xray.port }}
+      targetPort: xray
+      protocol: TCP
+      name: xray
+    {{- end }}
   selector:
     {{- include "xui.selectorLabels" . | nindent 4 }}
