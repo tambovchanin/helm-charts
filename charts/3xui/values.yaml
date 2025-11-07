@@ -36,6 +36,12 @@ podAnnotations: {}
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}
 
+xray:
+  enabled: true
+  port: 443
+
+hostname: example.com
+
 env:
   XRAY_VMESS_AEAD_FORCED: "false"
   XUI_ENABLE_FAIL2BAN: "true"
@@ -87,16 +93,6 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-# This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
-readinessProbe:
-  httpGet:
-    path: /
-    port: http
-
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
   enabled: false
@@ -104,11 +100,6 @@ autoscaling:
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-
-# persistence:
-#   enabled: true
-#   dbPath: /etc/x-ui/
-#   certPath: /root/cert/
 
 # Additional volumes on the output Deployment definition.
 volumes:
