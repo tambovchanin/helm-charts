@@ -36,11 +36,6 @@ podAnnotations: {}
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}
 
-persistence:
-  enabled: true
-  dbPath: /etc/x-ui/
-  certPath: /root/cert/
-
 env:
   XRAY_VMESS_AEAD_FORCED: "false"
   XUI_ENABLE_FAIL2BAN: "true"
@@ -110,18 +105,25 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# persistence:
+#   enabled: true
+#   dbPath: /etc/x-ui/
+#   certPath: /root/cert/
+
 # Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+volumes:
+  - name: shared-data
+    persistentVolumeClaim:
+      claimName: xui-pvc
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+volumeMounts:
+  - name: shared-data
+    mountPath: /etc/x-ui/
+    subPath: x-ui
+  - name: shared-data
+    mountPath: /root/cert/
+    subPath: cert
 
 nodeSelector: {}
 
