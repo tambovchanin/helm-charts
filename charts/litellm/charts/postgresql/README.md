@@ -16,18 +16,22 @@ helm install my-release oci://MY-OCI-REGISTRY/postgresql
 
 > Tip: Did you know that this app is also available as a Kubernetes App on the Azure Marketplace? Kubernetes Apps are the easiest way to deploy Bitnami on AKS. Click [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.postgresql-cnab) to see the listing on Azure Marketplace.
 
-Looking to use PostgreSQL in production? Try [VMware Tanzu Application Catalog](https://bitnami.com/enterprise), the commercial edition of the Bitnami catalog.
+## Why use Bitnami Secure Images?
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
 
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitnami/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+![Alt text](https://github.com/bitnami/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitnami/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
 
 ## Introduction
 
@@ -300,7 +304,7 @@ This way, the credentials will be available in all of the subcharts.
 
 ### FIPS parameters
 
-The FIPS parameters only have effect if you are using images from the [Bitnami Secure Images catalog](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+The FIPS parameters only have effect if you are using images from the [Bitnami Secure Images catalog](https://go-vmware.broadcom.com/contact-us).
 
 For more information on this new support, please refer to the [FIPS Compliance section](https://techdocs.broadcom.com/us/en/vmware-tanzu/bitnami-secure-images/bitnami-secure-images/services/bsi-doc/security-frameworks-FIPS-compliance.html).
 
@@ -574,7 +578,7 @@ If you already have data in it, you will fail to sync to standby nodes for all c
 | `primary.service.loadBalancerSourceRanges`                  | Addresses that are allowed when service is LoadBalancer                                                                                                                                                                           | `[]`                  |
 | `primary.service.extraPorts`                                | Extra ports to expose in the PostgreSQL primary service                                                                                                                                                                           | `[]`                  |
 | `primary.service.sessionAffinity`                           | Session Affinity for Kubernetes service, can be "None" or "ClientIP"                                                                                                                                                              | `None`                |
-| `primary.service.sessionAffinityConfig`                     | Additional settings for the sessionAffinity                                                                                                                                                                                       | `{}`                  |
+| `primary.service.sessionAffinityConfig`                     | Additional settings for the sessionAffinity. Ignored if `primary.service.sessionAffinity` is `None`                                                                                                                               | `{}`                  |
 | `primary.service.headless.annotations`                      | Additional custom annotations for headless PostgreSQL primary service                                                                                                                                                             | `{}`                  |
 | `primary.persistence.enabled`                               | Enable PostgreSQL Primary data persistence using PVC                                                                                                                                                                              | `true`                |
 | `primary.persistence.volumeName`                            | Name to assign the volume                                                                                                                                                                                                         | `data`                |
@@ -693,7 +697,7 @@ If you already have data in it, you will fail to sync to standby nodes for all c
 | `readReplicas.service.loadBalancerSourceRanges`                  | Addresses that are allowed when service is LoadBalancer                                                                                                                                                                                     | `[]`                  |
 | `readReplicas.service.extraPorts`                                | Extra ports to expose in the PostgreSQL read only service                                                                                                                                                                                   | `[]`                  |
 | `readReplicas.service.sessionAffinity`                           | Session Affinity for Kubernetes service, can be "None" or "ClientIP"                                                                                                                                                                        | `None`                |
-| `readReplicas.service.sessionAffinityConfig`                     | Additional settings for the sessionAffinity                                                                                                                                                                                                 | `{}`                  |
+| `readReplicas.service.sessionAffinityConfig`                     | Additional settings for the sessionAffinity. Ignored if `readReplicas.service.sessionAffinity` is `None`                                                                                                                                    | `{}`                  |
 | `readReplicas.service.headless.annotations`                      | Additional custom annotations for headless PostgreSQL read only service                                                                                                                                                                     | `{}`                  |
 | `readReplicas.persistence.enabled`                               | Enable PostgreSQL read only data persistence using PVC                                                                                                                                                                                      | `true`                |
 | `readReplicas.persistence.existingClaim`                         | Name of an existing PVC to use                                                                                                                                                                                                              | `""`                  |
@@ -889,7 +893,7 @@ If you already have data in it, you will fail to sync to standby nodes for all c
 | `metrics.fips.golang`                                       | Configure Golang FIPS mode: '', 'restricted', 'relaxed', 'off'. If empty (""), 'global.defaultFips' would be used                                                                                                                 | `relaxed`                           |
 | `metrics.service.ports.metrics`                             | PostgreSQL Prometheus Exporter service port                                                                                                                                                                                       | `9187`                              |
 | `metrics.service.clusterIP`                                 | Static clusterIP or None for headless services                                                                                                                                                                                    | `""`                                |
-| `metrics.service.sessionAffinity`                           | Control where client requests go, to the same pod or round-robin                                                                                                                                                                  | `None`                              |
+| `metrics.service.sessionAffinity`                           | Control where client requests go, to the same pod or round-robin. Allowed values: `ClientIP` or `None`                                                                                                                            | `None`                              |
 | `metrics.service.annotations`                               | Annotations for Prometheus to auto-discover the metrics endpoint                                                                                                                                                                  | `{}`                                |
 | `metrics.serviceMonitor.enabled`                            | Create ServiceMonitor Resource for scraping metrics using Prometheus Operator                                                                                                                                                     | `false`                             |
 | `metrics.serviceMonitor.namespace`                          | Namespace for the ServiceMonitor Resource (defaults to the Release Namespace)                                                                                                                                                     | `""`                                |
