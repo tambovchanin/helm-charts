@@ -9,6 +9,12 @@ persistence:
   ##   GKE, AWS & OpenStack)
   ##
   # storageClass: "-"
+  
+  ## Specify an existing PersistentVolume to bind to
+  ## If specified, the PVC will attempt to bind to this PV
+  ## Leave empty to use dynamic provisioning
+  volumeName: ""
+  
   accessMode: ReadWriteOnce
   size: 1Gi
   annotations: {}
