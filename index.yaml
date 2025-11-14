@@ -230,6 +230,16 @@ entries:
   pv:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2025-11-14T16:14:36.467637586Z"
+    description: A Helm chart to create PersistentVolume in Kubernetes Cluster
+    digest: e91be601df9c773e0fcb662727cd9a25c5aea55dd0829e4e88a62ac5861958e5
+    name: pv
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/pv-0.2.0/pv-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2025-11-14T11:11:55.789335824Z"
     description: A Helm chart to create PersistentVolume in Kubernetes Cluster
     digest: a6d5b533fdb7a9b489f9862cc863ba82df46351981a428727c5b8952df5d0adf
@@ -433,4 +443,4 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/xui-0.2.1/xui-0.2.1.tgz
     version: 0.2.1
-generated: "2025-11-14T15:33:08.061736062Z"
+generated: "2025-11-14T16:14:36.467680356Z"
