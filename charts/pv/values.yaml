@@ -1,0 +1,49 @@
+## PersistentVolume configuration
+persistentVolume:
+  enabled: true
+
+  ## Name of the PersistentVolume
+  name: ""
+
+  ## Storage capacity
+  size: 1Gi
+
+  ## Access modes
+  accessMode: ReadWriteOnce
+
+  ## Storage class name
+  storageClassName: ""
+
+  ## Volume source type: "local", "nfs", "hostPath", etc.
+  volumeType: "local"
+
+  ## Local volume host path
+  localPath: "/mnt/data"
+
+  ## NFS configuration (if volumeType is "nfs")
+  nfs:
+    server: ""
+    path: ""
+
+  ## Host path configuration (if volumeType is "hostPath")
+  hostPath:
+    path: "/mnt/data"
+    type: "Directory"
+
+  ## Reclaim policy: Delete, Retain, Recycle
+  persistentVolumeReclaimPolicy: "Retain"
+
+  ## Node affinity (for local volumes)
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+          - key: "kubernetes.io/hostname"
+            operator: "In"
+            values: []
+
+  ## Annotations for the PersistentVolume
+  annotations: {}
+
+  ## Labels for the PersistentVolume
+  labels: {}

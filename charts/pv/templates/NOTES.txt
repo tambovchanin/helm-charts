@@ -1,0 +1,26 @@
+1. PersistentVolume has been created successfully.
+
+{{- if .Values.persistentVolume.name }}
+   Name: {{ .Values.persistentVolume.name }}
+{{- else }}
+   Name: {{ include "pv.fullname" . }}
+{{- end }}
+
+2. Check the status of your PersistentVolume:
+   $ kubectl get pv
+
+3. View details of the created PersistentVolume:
+   $ kubectl describe pv {{ .Values.persistentVolume.name | default (include "pv.fullname" .) }}
+
+4. To use this PersistentVolume, create a PersistentVolumeClaim that references it:
+   apiVersion: v1
+   kind: PersistentVolumeClaim
+   metadata:
+     name: my-pvc
+   spec:
+     accessModes:
+       - {{ .Values.persistentVolume.accessMode }}
+     resources:
+       requests:
+         storage: {{ .Values.persistentVolume.size }}
+     volumeName: {{ .Values.persistentVolume.name | default (include "pv.fullname" .) }}
