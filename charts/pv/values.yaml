@@ -14,7 +14,7 @@ persistentVolume:
   ## Storage class name
   storageClassName: ""
 
-  ## Volume source type: "local", "nfs", "hostPath", etc.
+  ## Volume source type: "local", "nfs", "hostPath", "csi"
   volumeType: "local"
 
   ## Local volume host path
@@ -29,6 +29,15 @@ persistentVolume:
   hostPath:
     path: "/mnt/data"
     type: "Directory"
+
+  ## CSI configuration (if volumeType is "csi")
+  csi:
+    driver: ""
+    volumeHandle: ""
+    readOnly: false
+    fsType: ""
+    ## Additional CSI attributes/parameters
+    volumeAttributes: {}
 
   ## Reclaim policy: Delete, Retain, Recycle
   persistentVolumeReclaimPolicy: "Retain"

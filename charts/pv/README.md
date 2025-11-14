@@ -8,6 +8,7 @@ This chart allows you to easily create and manage PersistentVolume resources wit
 - Local volumes
 - NFS volumes
 - HostPath volumes
+- CSI (Container Storage Interface) volumes
 
 ## Installing the Chart
 
@@ -26,7 +27,7 @@ helm install my-pv ./pv -n default
 | `persistentVolume.size` | Storage capacity | `1Gi` |
 | `persistentVolume.accessMode` | Access mode (ReadWriteOnce, ReadOnlyMany, ReadWriteMany) | `ReadWriteOnce` |
 | `persistentVolume.storageClassName` | Storage class name | `""` |
-| `persistentVolume.volumeType` | Volume type (local, nfs, hostPath) | `local` |
+| `persistentVolume.volumeType` | Volume type (local, nfs, hostPath, csi) | `local` |
 | `persistentVolume.persistentVolumeReclaimPolicy` | Reclaim policy (Delete, Retain, Recycle) | `Retain` |
 | `persistentVolume.annotations` | Annotations for the PV | `{}` |
 | `persistentVolume.labels` | Labels for the PV | `{}` |
@@ -51,6 +52,16 @@ helm install my-pv ./pv -n default
 |-----------|-------------|---------|
 | `persistentVolume.hostPath.path` | Host path | `/mnt/data` |
 | `persistentVolume.hostPath.type` | Host path type (Directory, File, etc.) | `Directory` |
+
+### CSI Volume
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `persistentVolume.csi.driver` | CSI driver name (e.g., ebs.csi.aws.com, csi.vsphere.vmware.com) | `""` |
+| `persistentVolume.csi.volumeHandle` | Volume handle/ID from the CSI driver | `""` |
+| `persistentVolume.csi.readOnly` | Whether the volume is read-only | `false` |
+| `persistentVolume.csi.fsType` | Filesystem type (e.g., ext4, xfs) | `""` |
+| `persistentVolume.csi.volumeAttributes` | Additional CSI volume attributes | `{}` |
 
 ## Examples
 
@@ -81,6 +92,28 @@ helm install my-hostpath-pv ./pv \
   --set persistentVolume.volumeType=hostPath \
   --set persistentVolume.hostPath.path=/mnt/data \
   --set persistentVolume.storageClassName=fast-storage
+```
+
+### CSI Volume
+
+```bash
+helm install my-csi-pv ./pv \
+  --set persistentVolume.volumeType=csi \
+  --set persistentVolume.csi.driver=ebs.csi.aws.com \
+  --set persistentVolume.csi.volumeHandle=vol-1234567890abcdef0 \
+  --set persistentVolume.csi.fsType=ext4 \
+  --set persistentVolume.size=100Gi
+```
+
+### CSI Volume with Additional Attributes
+
+```bash
+helm install my-csi-pv ./pv \
+  --set persistentVolume.volumeType=csi \
+  --set persistentVolume.csi.driver=csi.vsphere.vmware.com \
+  --set persistentVolume.csi.volumeHandle=managed-disk-id \
+  --set persistentVolume.csi.volumeAttributes."folder"="/vm-folder" \
+  --set persistentVolume.csi.volumeAttributes."datastore"="/datastore1"
 ```
 
 ## Usage with PersistentVolumeClaim

@@ -34,5 +34,19 @@ spec:
   hostPath:
     path: {{ .Values.persistentVolume.hostPath.path | quote }}
     type: {{ .Values.persistentVolume.hostPath.type | quote }}
+  {{- else if eq .Values.persistentVolume.volumeType "csi" }}
+  csi:
+    driver: {{ .Values.persistentVolume.csi.driver | quote }}
+    volumeHandle: {{ .Values.persistentVolume.csi.volumeHandle | quote }}
+    {{- if .Values.persistentVolume.csi.readOnly }}
+    readOnly: {{ .Values.persistentVolume.csi.readOnly }}
+    {{- end }}
+    {{- if .Values.persistentVolume.csi.fsType }}
+    fsType: {{ .Values.persistentVolume.csi.fsType | quote }}
+    {{- end }}
+    {{- if .Values.persistentVolume.csi.volumeAttributes }}
+    volumeAttributes:
+      {{- toYaml .Values.persistentVolume.csi.volumeAttributes | nindent 6 }}
+    {{- end }}
   {{- end }}
 {{- end }}
