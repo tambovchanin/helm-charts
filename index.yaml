@@ -95,6 +95,25 @@ entries:
     version: 0.1.0
   litellm-helm:
   - apiVersion: v2
+    appVersion: v1.79.3-nightly
+    created: "2025-11-14T11:11:55.560453188Z"
+    dependencies:
+    - condition: db.deployStandalone
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: '>=13.3.0'
+    - condition: redis.enabled
+      name: redis
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: '>=18.0.0'
+    description: Call all LLM APIs using the OpenAI format
+    digest: 965e7e885da205a990f41b0ad48215e39e3f080b0d500ee486752bde88a2901e
+    name: litellm-helm
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/litellm-helm-0.1.812/litellm-helm-0.1.812.tgz
+    version: 0.1.812
+  - apiVersion: v2
     appVersion: v1.79.1.rc.2
     created: "2025-11-06T22:01:20.121490319Z"
     dependencies:
@@ -208,6 +227,17 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/litellm-helm-0.1.652/litellm-helm-0.1.652.tgz
     version: 0.1.652
+  pv:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2025-11-14T11:11:55.789335824Z"
+    description: A Helm chart to create PersistentVolume in Kubernetes Cluster
+    digest: a6d5b533fdb7a9b489f9862cc863ba82df46351981a428727c5b8952df5d0adf
+    name: pv
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/pv-0.1.0/pv-0.1.0.tgz
+    version: 0.1.0
   pvc:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -393,4 +423,4 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/xui-0.2.1/xui-0.2.1.tgz
     version: 0.2.1
-generated: "2025-11-07T09:31:15.790484313Z"
+generated: "2025-11-14T11:11:55.789396299Z"
