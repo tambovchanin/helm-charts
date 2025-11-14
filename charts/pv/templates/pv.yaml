@@ -1,0 +1,38 @@
+{{- if .Values.persistentVolume.enabled }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.persistentVolume.name | default (include "pv.fullname" .) }}
+  labels:
+    {{- include "pv.labels" . | nindent 4 }}
+    {{- with .Values.persistentVolume.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.persistentVolume.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  capacity:
+    storage: {{ .Values.persistentVolume.size | quote }}
+  accessModes:
+    - {{ .Values.persistentVolume.accessMode }}
+  {{- if .Values.persistentVolume.storageClassName }}
+  storageClassName: {{ .Values.persistentVolume.storageClassName | quote }}
+  {{- end }}
+  persistentVolumeReclaimPolicy: {{ .Values.persistentVolume.persistentVolumeReclaimPolicy }}
+  {{- if eq .Values.persistentVolume.volumeType "local" }}
+  local:
+    path: {{ .Values.persistentVolume.localPath | quote }}
+  nodeAffinity:
+    {{- toYaml .Values.persistentVolume.nodeAffinity | nindent 4 }}
+  {{- else if eq .Values.persistentVolume.volumeType "nfs" }}
+  nfs:
+    server: {{ .Values.persistentVolume.nfs.server | quote }}
+    path: {{ .Values.persistentVolume.nfs.path | quote }}
+  {{- else if eq .Values.persistentVolume.volumeType "hostPath" }}
+  hostPath:
+    path: {{ .Values.persistentVolume.hostPath.path | quote }}
+    type: {{ .Values.persistentVolume.hostPath.type | quote }}
+  {{- end }}
+{{- end }}
