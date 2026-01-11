@@ -68,6 +68,9 @@ spec:
       {{- if .Values.replica.hostAliases }}
       hostAliases: {{- include "common.tplvalues.render" (dict "value" .Values.replica.hostAliases "context" $) | nindent 8 }}
       {{- end }}
+      {{- if .Values.replica.runtimeClassName }}
+      runtimeClassName: {{ .Values.replica.runtimeClassName }}
+      {{- end }}
       {{- if .Values.replica.podSecurityContext.enabled }}
       securityContext: {{- include "common.compatibility.renderSecurityContext" (dict "secContext" .Values.replica.podSecurityContext "context" $) | nindent 8 }}
       {{- end }}
