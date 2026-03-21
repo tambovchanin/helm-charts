@@ -2,7 +2,7 @@ annotations:
   org.opencontainers.image.source: https://github.com/BerriAI/litellm
   org.opencontainers.image.url: https://docs.litellm.ai/
 apiVersion: v2
-appVersion: v1.81.13
+appVersion: v1.82.3
 dependencies:
 - condition: db.deployStandalone
   name: postgresql
@@ -15,4 +15,4 @@ dependencies:
 description: Call all LLM APIs using the OpenAI format
 name: litellm-helm
 type: application
-version: 1.81.13
+version: 1.82.3

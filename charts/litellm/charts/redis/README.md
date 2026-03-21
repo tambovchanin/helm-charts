@@ -52,7 +52,7 @@ The main features of each chart are the following:
 | Single write point (single master)                     | Multiple write points (multiple masters)                               |
 | ![Redis&reg; Topology](img/redis-topology.png) | ![Redis&reg; Cluster Topology](img/redis-cluster-topology.png) |
 
-## Prerequisites
+## Before you begin
 
 - Kubernetes 1.23+
 - Helm 3.8.0+
@@ -73,6 +73,8 @@ The command deploys Redis&reg; on the Kubernetes cluster in the default configur
 > **Tip**: List all releases using `helm list`
 
 ## Configuration and installation details
+
+This section describes credentials, configuration, and other installation options.
 
 ### Resource requests and limits
 
@@ -392,7 +394,7 @@ Follow the following steps:
        save ""
     ```
 
-    > *Note that the `Enable AOF` comment belongs to the original config file and what you're actually doing is disabling it. This change will only be neccessary for the temporal cluster you're creating to upload the dump.*
+    > *Note that the `Enable AOF` comment belongs to the original config file and what you're actually doing is disabling it. This change will only be necessary for the temporal cluster you're creating to upload the dump.*
 
 - Start the new cluster to create the PVCs. Use the command below as an example:
 
@@ -498,7 +500,7 @@ helm install my-release --set master.persistence.existingClaim=PVC_NAME oci://RE
 | `global.defaultStorageClass`                          | Global default StorageClass for Persistent Volume(s)                                                                                                                                                                                                                                                                                                                | `""`         |
 | `global.storageClass`                                 | DEPRECATED: use global.defaultStorageClass instead                                                                                                                                                                                                                                                                                                                  | `""`         |
 | `global.redis.password`                               | Global Redis(R) password (overrides `auth.password`)                                                                                                                                                                                                                                                                                                                | `""`         |
-| `global.defaultFips`                                  | Default value for the FIPS configuration (allowed values: '', restricted, relaxed, off). Can be overriden by the 'fips' object                                                                                                                                                                                                                                      | `restricted` |
+| `global.defaultFips`                                  | Default value for the FIPS configuration (allowed values: '', restricted, relaxed, off). Can be overridden by the 'fips' object                                                                                                                                                                                                                                     | `restricted` |
 | `global.security.allowInsecureImages`                 | Allows skipping image verification                                                                                                                                                                                                                                                                                                                                  | `false`      |
 | `global.compatibility.openshift.adaptSecurityContext` | Adapt the securityContext sections of the deployment to make them compatible with Openshift restricted-v2 SCC: remove runAsUser, runAsGroup and fsGroup and let the platform use their allowed default IDs. Possible values: auto (apply if the detected running cluster is Openshift), force (perform the adaptation always), disabled (do not perform adaptation) | `auto`       |
 
@@ -1149,6 +1151,8 @@ helm install my-release -f values.yaml oci://REGISTRY_NAME/REPOSITORY_NAME/redis
 Find more information about how to deal with common errors related to Bitnami's Helm charts in [this troubleshooting guide](https://docs.bitnami.com/general/how-to/troubleshoot-helm-chart-issues).
 
 ## Upgrading
+
+The following subsections describe notable changes when upgrading.
 
 ### To 20.5.0
 
