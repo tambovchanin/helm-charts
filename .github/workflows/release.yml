@@ -28,3 +28,30 @@ jobs:
         uses: helm/chart-releaser-action@v1.7.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Sync GitHub Pages README
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          worktree_dir="$(mktemp -d)"
+          cleanup() {
+            git worktree remove "$worktree_dir" --force >/dev/null 2>&1 || true
+            rm -rf "$worktree_dir"
+          }
+          trap cleanup EXIT
+
+          git fetch origin gh-pages
+          git worktree add "$worktree_dir" origin/gh-pages
+          cp README.md "$worktree_dir/README.md"
+
+          if git -C "$worktree_dir" diff --quiet -- README.md; then
+            echo "GitHub Pages README already up to date"
+            exit 0
+          fi
+
+          git -C "$worktree_dir" config user.name "$GITHUB_ACTOR"
+          git -C "$worktree_dir" config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git -C "$worktree_dir" add README.md
+          git -C "$worktree_dir" commit -m "docs: sync GitHub Pages README"
+          git -C "$worktree_dir" push origin HEAD:gh-pages
