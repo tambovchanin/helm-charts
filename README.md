@@ -20,13 +20,13 @@ helm search repo tambovchanin
 
 | Chart | Description | Version | Documentation |
 | --- | --- | --- | --- |
-| [3xui](https://github.com/tambovchanin/helm-charts/tree/main/charts/3xui) | 3X-UI panel for Xray (Helm package: `xui`) | `0.3.0` | [README](https://github.com/tambovchanin/helm-charts/blob/main/charts/3xui/README.md) |
-| [cronjob](https://github.com/tambovchanin/helm-charts/tree/main/charts/cronjob) | Generic CronJob templates | `0.0.1` | [README](https://github.com/tambovchanin/helm-charts/blob/main/charts/cronjob/README.md) |
+| [3xui](https://github.com/tambovchanin/helm-charts/tree/main/charts/3xui) | 3X-UI panel for Xray (Helm package: `xui`) | `0.4.0` | [README](https://github.com/tambovchanin/helm-charts/blob/main/charts/3xui/README.md) |
+| [cronjob](https://github.com/tambovchanin/helm-charts/tree/main/charts/cronjob) | Generic CronJob templates | `0.0.2` | [README](https://github.com/tambovchanin/helm-charts/blob/main/charts/cronjob/README.md) |
 | [crowdsec-bouncer-traefik](https://github.com/tambovchanin/helm-charts/tree/main/charts/crowdsec-bouncer-traefik) | CrowdSec Bouncer middleware for Traefik | `0.1.1` | [README](https://github.com/tambovchanin/helm-charts/blob/main/charts/crowdsec-bouncer-traefik/README.md) |
 | [litellm](https://github.com/tambovchanin/helm-charts/tree/main/charts/litellm) | LiteLLM proxy with Bitnami-backed dependencies | `1.82.3` | [README](https://github.com/tambovchanin/helm-charts/blob/main/charts/litellm/README.md) |
 | [pv](https://github.com/tambovchanin/helm-charts/tree/main/charts/pv) | PersistentVolume generator | `0.2.0` | [README](https://github.com/tambovchanin/helm-charts/blob/main/charts/pv/README.md) |
 | [pvc](https://github.com/tambovchanin/helm-charts/tree/main/charts/pvc) | PersistentVolumeClaim generator | `0.2.0` | [README](https://github.com/tambovchanin/helm-charts/blob/main/charts/pvc/README.md) |
-| [traefik-middleware](https://github.com/tambovchanin/helm-charts/tree/main/charts/traefik-middleware) | Traefik middleware and plugin configs | `0.1.0` | [README](https://github.com/tambovchanin/helm-charts/blob/main/charts/traefik-middleware/README.md) |
+| [traefik-middleware](https://github.com/tambovchanin/helm-charts/tree/main/charts/traefik-middleware) | Traefik middleware and plugin configs | `0.1.1` | [README](https://github.com/tambovchanin/helm-charts/blob/main/charts/traefik-middleware/README.md) |
 
 ## Documentation
 
