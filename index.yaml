@@ -34,6 +34,24 @@ entries:
   cronjob:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-04-18T18:16:13.249201425Z"
+    description: A generic helm cronjob chart for kubernetes
+    digest: 3d27a68302e7ba5ced6859b9b20e3809072e4705e3c12f91ebf681516ae7a851
+    home: https://tambovchanin.github.io/helm-charts
+    keywords:
+    - cronjob
+    maintainers:
+    - email: info@tambovchanin.com
+      name: Denis Shiriaev
+    name: cronjob
+    sources:
+    - https://github.com/tambovchanin/helm-charts/charts/cronjob
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/cronjob-0.0.2/cronjob-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-03-02T20:59:36.898795173Z"
     description: A generic helm cronjob chart for kubernetes
     digest: 9b3c10c1592aeb2037d1ea469bdab9f28a27963f689bbb0c577b7c87a4e6fcea
@@ -94,6 +112,28 @@ entries:
     - https://github.com/tambovchanin/helm-charts/releases/download/crowdsec-bouncer-traefik-0.1.0/crowdsec-bouncer-traefik-0.1.0.tgz
     version: 0.1.0
   litellm-helm:
+  - annotations:
+      org.opencontainers.image.source: https://github.com/BerriAI/litellm
+      org.opencontainers.image.url: https://docs.litellm.ai/
+    apiVersion: v2
+    appVersion: v1.82.3
+    created: "2026-04-18T18:16:13.496414059Z"
+    dependencies:
+    - condition: db.deployStandalone
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: '>=13.3.0'
+    - condition: redis.enabled
+      name: redis
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: '>=18.0.0'
+    description: Call all LLM APIs using the OpenAI format
+    digest: 50eed64507609d1b11cee3064ec49042eea375e330db0b07a25e86546ca40f6d
+    name: litellm-helm
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/litellm-helm-1.82.3/litellm-helm-1.82.3.tgz
+    version: 1.82.3
   - apiVersion: v2
     appVersion: v1.79.3-nightly
     created: "2025-11-14T11:11:55.560453188Z"
@@ -282,6 +322,28 @@ entries:
   traefik-middleware:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-04-18T18:16:13.680478005Z"
+    description: A Helm chart for deploying Traefik Middleware config options for
+      plugins and middlewares
+    digest: 441d25e2b8a82750eef820f64d18ae8f23475ae4d036f5562f787c18e7d8e9df
+    home: https://tambovchanin.github.io/helm-charts
+    keywords:
+    - traefik
+    - middleware
+    - plugin
+    - configuration
+    maintainers:
+    - email: info@tambovchanin.com
+      name: Denis Shiriaev
+    name: traefik-middleware
+    sources:
+    - https://github.com/tambovchanin/helm-charts/charts/traefik-middleware
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/traefik-middleware-0.1.1/traefik-middleware-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-03-05T08:37:54.470680439Z"
     description: A Helm chart for deploying Traefik Middleware config options for
       plugins and middlewares
@@ -415,6 +477,27 @@ entries:
   xui:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-04-18T18:16:13.878590908Z"
+    description: A Helm chart for deploying the 3X-UI Xray panel
+    digest: b6cb728041e9d078d22b66bc4f6c80e95f0f43dd374dc1f6355b942780bd217b
+    home: https://tambovchanin.github.io/helm-charts
+    keywords:
+    - 3xui
+    - xray
+    - proxy
+    - vpn
+    maintainers:
+    - email: info@tambovchanin.com
+      name: Denis Shiriaev
+    name: xui
+    sources:
+    - https://github.com/tambovchanin/helm-charts/tree/main/charts/3xui
+    type: application
+    urls:
+    - https://github.com/tambovchanin/helm-charts/releases/download/xui-0.4.0/xui-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-11-07T09:31:15.790435692Z"
     description: A Helm chart for Kubernetes
     digest: 6a75f5f9579f6ad25fea83b9e60b4b462a9f3347a80b82924fd9b62ccbeb0d1c
@@ -443,4 +526,4 @@ entries:
     urls:
     - https://github.com/tambovchanin/helm-charts/releases/download/xui-0.2.1/xui-0.2.1.tgz
     version: 0.2.1
-generated: "2025-11-14T16:14:36.467680356Z"
+generated: "2026-04-18T18:16:13.878681437Z"
