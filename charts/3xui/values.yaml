@@ -46,6 +46,22 @@ env:
   XRAY_VMESS_AEAD_FORCED: "false"
   XUI_ENABLE_FAIL2BAN: "true"
 
+livenessProbe:
+  tcpSocket:
+    port: http
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 1
+  failureThreshold: 3
+
+readinessProbe:
+  tcpSocket:
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 1
+  failureThreshold: 3
+
 podSecurityContext: {}
   # fsGroup: 2000
 
