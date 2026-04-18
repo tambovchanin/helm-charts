@@ -1,6 +1,6 @@
-# CrowdSec Bouncer for Traefik
+# Traefik Middleware Helm Chart
 
-This Helm chart adds middleware configurations for Traefik, including installed plugins that require additional configuration.
+This Helm chart adds middleware configurations for Traefik, including native middlewares and installed plugins that require additional configuration.
 
 ## Prerequisites
 
@@ -31,11 +31,13 @@ helm install traefik-middleware tambovchanin/traefik-middleware \
 The following table lists the configurable parameters of the chart and their default values.
 
 ### Configuration Parameters
-| Parameter         | Description                                                             | Default Value |
-|------------------|--------------------------------------------------------------------------|---------------|
-| `namespace`      | Namespace in which Traefik is deployed                                   | `traefik`     |
-| `middlewares`    | Map object containing middleware (internal) configurations               | `{}`          |
-| `plugins`        | Map object containing plugins (external middlewares) configurations      | `{}`          |
+| Parameter | Description | Default Value |
+| --- | --- | --- |
+| `nameOverride` | Override chart name | `""` |
+| `fullnameOverride` | Override full release name | `""` |
+| `namespace` | Namespace in which Traefik is deployed | `traefik` |
+| `middlewares` | Map object containing native middleware configurations | `{}` |
+| `plugins` | Map object containing plugin-based middleware configurations | `{}` |
 
 ### Example `values.yaml` File
 
@@ -119,4 +121,3 @@ spec:
 helm repo update
 helm upgrade traefik-middleware tambovchanin/traefik-middleware
 ```
-

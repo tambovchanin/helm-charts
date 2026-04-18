@@ -11,6 +11,10 @@ image:
 imagePullSecrets: []
 
 # will create a kubernetes.io/dockerconfigjson secret
+# and add it to imagePullSecrets when provided
+dockerConfigJson: ""
+
+# will create a kubernetes.io/dockerconfigjson secret
 # and add it to imagePullSecrets
 # i.e.
 # AUTH=$( echo -n "$REGISTRY_USER:$REGISTRY_PASS" | base64 )
