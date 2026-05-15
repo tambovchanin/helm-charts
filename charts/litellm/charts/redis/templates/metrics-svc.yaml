@@ -1,5 +1,5 @@
 {{- /*
-Copyright Broadcom, Inc. All Rights Reserved.
+Copyright VMware, Inc.
 SPDX-License-Identifier: APACHE-2.0
 */}}
 
@@ -34,7 +34,7 @@ spec:
   {{- end }}
   ports:
     - name: http-metrics
-      port: {{ .Values.metrics.service.ports.http }}
+      port: {{ coalesce .Values.metrics.service.ports.http .Values.metrics.service.port }}
       protocol: TCP
       targetPort: metrics
     {{- if .Values.metrics.service.extraPorts }}
